@@ -37,6 +37,33 @@ const matrizInimigo = [
   [208, 626],
   [312, 626],
 ]
+this.matrizPersonagem = 
+[
+  [0,0],
+  [220,0],
+  [440,0],
+  [660,0],
+  [0,270],
+  [220,270],
+  [440,270],
+  [660,270],
+  [0,540],
+  [220,540],
+  [440,540],
+  [660,540],
+  [0,810],
+  [220,810],
+  [440,810],
+  [660,810],
+]
+
+function keyPressed() {
+  if (keyCode === UP_ARROW) {
+    personagem.pula()
+  } else if (keyCode === RIGHT_ARROW) {
+    personagem.pula()
+  }
+}
 
 function preload() {
   imagemCenario = loadImage("imagens/cenario/floresta.png");
@@ -48,19 +75,22 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   cenario = new Cenario(imagemCenario, 3);
-  personagem = new Personagem(imagemPersonagem);
+  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 110, 135, 220, 270);
   inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 52, 52, 104, 104)
   frameRate(40)
   somDoJogo.loop();
 }
 
 function draw() {
-  cenario.exibe()
+  cenario.exibe();
   cenario.move();
 
-  inimigo.exibe();
-
   personagem.exibe();
+
+  inimigo.exibe();
+  inimigo.move();
+
+  
 
 
 }
