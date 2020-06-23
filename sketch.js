@@ -86,6 +86,7 @@ function draw() {
   cenario.move();
 
   personagem.exibe();
+  personagem.aplicandoGravidade()
 
   inimigo.exibe();
   inimigo.move();
