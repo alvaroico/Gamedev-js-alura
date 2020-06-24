@@ -1,6 +1,7 @@
 let imagemCenario;
 let imagemPersonagem;
 let imagemInimigo;
+let somDoPulo;
 
 let cenario;
 let somDoJogo;
@@ -60,6 +61,7 @@ this.matrizPersonagem =
 function keyPressed() {
   if (keyCode === UP_ARROW) {
     personagem.pula()
+    somDoPulo.play()
   } else if (keyCode === RIGHT_ARROW) {
     personagem.pula()
   }
@@ -70,6 +72,7 @@ function preload() {
   imagemPersonagem = loadImage("imagens/personagem/correndo.png");
   imagemInimigo = loadImage("imagens/inimigos/gotinha.png");
   somDoJogo = loadSound('sons/trilha_jogo.mp3');
+  somDoPulo = loadSound('sons/somPulo.mp3');
 }
 
 function setup() {
@@ -94,6 +97,7 @@ function draw() {
   if(personagem.estaColidindo(inimigo)){
     console.log('colidiu')
     noLoop()
+    somDoJogo.stop();
   }
 
 
