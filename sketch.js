@@ -12,6 +12,8 @@ let inimigo;
 let InimigoGrande;
 let InimigoVoador;
 
+const inimigos = [];
+
 const matrizInimigo = [
   [0, 0],
   [105, 0],
@@ -142,7 +144,7 @@ function setup() {
     220, 
     270
   );
-  inimigo = new Inimigo(
+  const inimigo = new Inimigo(
     matrizInimigo, 
     imagemInimigo, 
     width - 52, 
@@ -154,7 +156,7 @@ function setup() {
     10,
     200
   )
-  InimigoGrande = new Inimigo(
+  const InimigoGrande = new Inimigo(
     matrizInimigoGrande, 
     imagemInimigoGrande, 
     width, 
@@ -166,7 +168,7 @@ function setup() {
     10,
     1500
   )
-  InimigoVoador = new Inimigo(
+  const InimigoVoador = new Inimigo(
     matrizInimigoVoador, 
     imagemInimigoVoador, 
     width -52, 
@@ -178,6 +180,11 @@ function setup() {
     10,
     2500
   )
+
+  inimigos.push(inimigo)
+  inimigos.push(InimigoGrande)
+  inimigos.push(InimigoVoador)
+
   frameRate(40)
   somDoJogo.loop();
 }
@@ -189,19 +196,17 @@ function draw() {
   personagem.exibe();
   personagem.aplicandoGravidade()
 
-  InimigoGrande.exibe()
-  InimigoGrande.move()
+  inimigos.forEach(inimigo => {
+    inimigo.exibe()
+    inimigo.move()
 
-  InimigoVoador.exibe()
-  InimigoVoador.move()
+    if(personagem.estaColidindo(inimigo)){
+      noLoop()
+      somDoJogo.stop();
+    }
 
-  inimigo.exibe();
-  inimigo.move();
 
-  if(personagem.estaColidindo(inimigo)){
-    noLoop()
-    somDoJogo.stop();
-  }
+  })
 
 
 }
