@@ -3,6 +3,7 @@ let imagemPersonagem;
 let imagemInimigo;
 let imagemInimigoGrande;
 let imagemInimigoVoador;
+let imagemGameOver;
 let somDoPulo;
 
 let cenario;
@@ -124,12 +125,14 @@ function keyPressed() {
 
 function preload() {
   imagemCenario = loadImage("imagens/cenario/floresta.png");
+  imagemGameOver = loadImage("imagens/assets/game-over.png");
   imagemPersonagem = loadImage("imagens/personagem/correndo.png");
   imagemInimigo = loadImage("imagens/inimigos/gotinha.png");
   imagemInimigoGrande = loadImage("imagens/inimigos/troll.png");
   imagemInimigoVoador = loadImage("imagens/inimigos/gotinha-voadora.png");
   somDoJogo = loadSound('sons/trilha_jogo.mp3');
   somDoPulo = loadSound('sons/somPulo.mp3');
+
 }
 
 function setup() {
@@ -208,6 +211,7 @@ function draw() {
 
     if(personagem.estaColidindo(inimigo)){
       noLoop()
+      image(imagemGameOver, width/2 -200, height/2)
       somDoJogo.stop();
     }
 
